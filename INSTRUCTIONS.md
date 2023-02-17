@@ -24,6 +24,13 @@ Between the server and client, you'll need two terminal tabs! Because we're usin
 ## BASE MODE
 
 For this project you will create a gallery page to share pictures of things that are important to you. Visitors can click on an image to see a description and use a button to "like" an image. 
+### TASKS:
+- [] **GET** display images with:
+    - [] like button -- toggle between having a full or outlined heart **PUT**
+- [] allow user to click on image **GET byID**
+    - [] once image clicked -> description appears
+
+
 
 To practice passing values through `props` in React, you will build the gallery using mulitple components - an `App`, `GalleryList`, and `GalleryItem`.
 
