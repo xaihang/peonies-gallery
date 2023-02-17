@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import GalleryList from '../GalleryList/GalleryList';
+import DeleteItem from '../DeleteItem/DeleteItem';
 
-
+// import Swal from "sweetalert2";
+// import withReactContent from "sweetalert2-react-content";
 
 function App() {
   const [imageList, setImageList] = useState([]);
@@ -23,7 +25,18 @@ function App() {
     fetchImages();
   }, []);
 
-  console.log('imageList', imageList);
+
+  const deleteItem = (id) => {
+    axios
+      .delete(`/gallery/${id}`)
+      .then(() => {
+        fetchImages();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  
 
   const handleLike = (id) => {
     console.log("in handleLike");
@@ -44,8 +57,10 @@ function App() {
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
       <p>Gallery goes here</p>
-      <GalleryList handleLike={handleLike} imageList={imageList}/>
-
+      <GalleryList 
+        handleLike={handleLike} 
+        imageList={imageList}
+        deleteItem={deleteItem}/>
     </div>
   );
 }

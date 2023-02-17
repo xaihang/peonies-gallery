@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
+import DeleteItem from '../DeleteItem/DeleteItem';
 
-function GalleryItem ({item, handleLike}) {
+function GalleryItem ({item, handleLike, deleteItem}) {
     const [showDescription, setShowDescription] = useState(false)
 
     const toggleDescription = () => {
@@ -16,6 +17,7 @@ function GalleryItem ({item, handleLike}) {
                 <MdFavorite />
             </button>
             <p>{item.likes} people love this!</p>
+            <DeleteItem id={item.id} deleteItem={deleteItem} />
         </div>
     )
 }
