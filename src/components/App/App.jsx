@@ -3,17 +3,16 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-
   const [imageList, setImageList] = useState([]);
 
   const fetchImages = () => {
     axios
-      .get("/gallery")
+      .get('/gallery')
       .then((response) => {
         setImageList(response.data);
       })
       .catch((error) => {
-        alert("error getting shopping list");
+        alert('error getting shopping list');
       });
   };
 
@@ -23,20 +22,36 @@ function App() {
 
   console.log('imageList', imageList);
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Gallery of My Life</h1>
-        </header>
-        <p>Gallery goes here</p>
-        {/* <img src="images/goat_small.jpg"/> */}
-        {imageList.map((item) => (
-          <img 
-            key={item.id} 
-           src={item.path} />
-        ))}
-      </div>
-    );
+  const handleLike = (id) => {
+    console.log("in handleLike");
+    axios
+      .put(`/gallery/like/${id}`)
+      .then(() => {
+        fetchImages();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1 className="App-title">Gallery of My Life</h1>
+      </header>
+      <p>Gallery goes here</p>
+
+      {imageList.map((item) => (
+        <div key={item.id}>
+          <img  src={item.path} />
+          <button className="Like-button" onClick={() => handleLike(item.id)}>Like</button>
+          <p>{item.likes} People love this!</p>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default App;
