@@ -34,12 +34,10 @@ For this project you will create a gallery page to share pictures of things that
 
 To practice passing values through `props` in React, you will build the gallery using mulitple components - an `App`, `GalleryList`, and `GalleryItem`.
 ### TASKS:
-- [x] components for gallerylist and galleryitem
+- [x] `App` - represents the overall application or site 
+- [x] `GalleryList` - represents the gallery of images. By componentizing, we could reuse this component in different applications
 
-
-- `App` - represents the overall application or site 
-- `GalleryList` - represents the gallery of images. By componentizing, we could reuse this component in different applications
-- `GalleryItem` - represents a single image in the gallery with the ability to click the image to toggle between image and description as well as the ability to like an image.
+- [x] `GalleryItem` - represents a single image in the gallery with the ability to click the image to toggle between image and description as well as the ability to like an image.
 
 ### Wireframes
 
@@ -50,16 +48,16 @@ To practice passing values through `props` in React, you will build the gallery 
 ![mockup two](wireframes/second-mockup.png)
 
 ### Task List
-- Use `axios` to retrieve (`GET`) data from to `/gallery` and store it in `App.jsx`.
-- Create a new **component** for the `GalleryList` and pass it the gallery data stored in `App` via `props`.
+- [x] Use `axios` to retrieve (`GET`) data from to `/gallery` and store it in `App.jsx`.
+- [x] Create a new **component** for the `GalleryList` and pass it the gallery data stored in `App` via `props`.
     - Iterate (loop over) the list of gallery data
     - Make GalleryItems
-- Create a new **component** called `GalleryItem.jsx` and pass it the individual gallery item via `props`. 
-    - Update the `GalleryList` to use this component to display an image.
-    - Swap the image with the description on click. Use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html).
-    - Display the number likes for each item and include a like button.
-    - When the like button is clicked, use `Axios` to update (`PUT`) the like count `/gallery/like/:id`.
-    - Update the gallery each time a like button is clicked.
+- [x] Create a new **component** called `GalleryItem.jsx` and pass it the individual gallery item via `props`. 
+    - [x] Update the `GalleryList` to use this component to display an image.
+    - [x] Toogle / Swap the image with the description on click. Use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html).
+    - [x] Display the number likes for each item and include a like button.
+    - [x] When the like button is clicked, use `Axios` to update (`PUT`) the like count `/gallery/like/:id`.
+    - [x] Update the gallery each time a like button is clicked.
 
 
 
@@ -67,7 +65,7 @@ To practice passing values through `props` in React, you will build the gallery 
 
 ### Use Git Branching
 
-For each `feature` of your application, make a branch, work on the branch, and then merge it into master with `git merge --no-ff`. Feel free to work on the features in any order you like. You should be making branches for whatever feature you are working on.
+- [x] For each `feature` of your application, make a branch, work on the branch, and then merge it into master with `git merge --no-ff`. Feel free to work on the features in any order you like. You should be making branches for whatever feature you are working on.
 
 **Do not start on stretch goals until ALL of base mode is complete. Some of these will require additional research.**
 
