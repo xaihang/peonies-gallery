@@ -11,11 +11,9 @@ function App() {
       .get("/gallery")
       .then((response) => {
         setImageList(response.data);
-        console.log('RESPONSE ==', response)
       })
       .catch((error) => {
         alert("error getting shopping list");
-        console.log(error);
       });
   };
 
