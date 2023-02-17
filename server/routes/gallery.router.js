@@ -32,6 +32,24 @@ router.put('/like/:id', (req, res) => {
         });
 }); 
 
+
+//! DELETE - by ID (delete button per specific item)
+router.delete("/:id", (req, res) => {
+    const idToDelete = req.params.id;
+    const sqlText = `DELETE FROM gallery WHERE id=$1;`;
+  
+    pool
+      .query(sqlText, [idToDelete])
+      .then((result) => {
+        console.log(`Delete image with id=${idToDelete} from the database`);
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log(`Error making database query ${sqlText}`, error);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;
 
 
