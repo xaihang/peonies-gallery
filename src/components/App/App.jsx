@@ -36,7 +36,6 @@ function App() {
         console.error(err);
       });
   };
-  
 
   const handleLike = (id) => {
     console.log("in handleLike");
