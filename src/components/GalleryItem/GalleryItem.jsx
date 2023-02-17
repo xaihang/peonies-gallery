@@ -1,24 +1,23 @@
 import { useState } from 'react';
-
-// import { BsFillSuitHeartFill } from "react-icons/all";
 import { MdFavorite } from 'react-icons/md';
 
 function GalleryItem ({item, handleLike}) {
-    const [toggle, setToggle] = useState(true)
+    const [showDescription, setShowDescription] = useState(false)
 
-    // console.log('toggle', toggle)
+    const toggleDescription = () => {
+        setShowDescription(!showDescription)
+    }
+
     return (
-        <>
-        {toggle ? 
-            <img  onClick={() => setToggle(false)}  src={item.path} />
-        :
-            <p onClick={() => setToggle(true)} >{item.description} </p>
-        }
-       
-            <button className="Like-button" onClick={() => handleLike(item.id)}> <MdFavorite /></button>
-            <p>{item.likes} People love this!</p>
-        </>
+        <div className="gallery-item">
+            <img src={item.url} onClick={toggleDescription} alt={item.description} />
+            {showDescription && <p onClick={toggleDescription}>{item.description}</p>}
+            <button className="like-button" onClick={() => handleLike(item.id)}>
+                <MdFavorite />
+            </button>
+            <p>{item.likes} people love this!</p>
+        </div>
     )
 }
 
-export default GalleryItem; 
+export default GalleryItem;
