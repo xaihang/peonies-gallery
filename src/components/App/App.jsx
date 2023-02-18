@@ -71,7 +71,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="App-title">Petals of Perfection: A Breathtaking Gallery of Peonies</h1>
+        <h1 className="App-title">Petals of Perfection</h1>
+        <h2 className="App-title">A Breathtaking Gallery of Peonies</h2> 
       </header>
       <GalleryForm addImage={addImage}/>
       <p></p>

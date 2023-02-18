@@ -5,7 +5,7 @@ function Input({ name, value, setValue, placeHolder, type = "text" }) {
   
     return (
       <>
-        <label htmlFor={name}>{name}: </label>
+        {/* <label htmlFor={name}>{name}: </label> */}
         <input name={name} onChange={handleChange} type={type} value={value} placeholder={placeHolder}/>
       </>
     );
