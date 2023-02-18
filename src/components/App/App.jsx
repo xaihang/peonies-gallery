@@ -3,11 +3,14 @@ import './App.css';
 import axios from 'axios';
 import GalleryList from '../GalleryList/GalleryList';
 import GalleryForm from '../GalleryForm/GalleryForm';
+import GalleryMutlerForm from '../GalleryMutlerForm/GalleryMutlerForm';
 
 
 function App() {
   const [imageList, setImageList] = useState([]);
   const [showDescriptionList, setShowDescriptionList] = useState([]);
+  const [file, setFile] = useState()
+  const [description, setDescription] = useState("")
 
   const fetchImages = () => {
     axios
@@ -64,10 +67,24 @@ function App() {
         fetchImages();
       })
       .catch((err) => {
-       console.error(err)
+        console.error(err)
       })
   };
 
+
+  const uploadImage = async event => {
+    event.preventDefault()
+  
+    const formData = new FormData()
+    formData.append("image", file)
+    formData.append("description", description)
+
+   await axios.post('/gallery/upload', formData, { headers: {'Content-Type': 'multipart/form-data'}})
+ 
+    fetchImages();
+    setFile(null)
+    setDescription("")
+  }
 
   return (
     <div className="App">
@@ -76,6 +93,20 @@ function App() {
         <h2 className="App-title">A Breathtaking Gallery of Peonies</h2> 
       </header>
       <GalleryForm addImage={addImage}/>
+      <form onSubmit={uploadImage}>
+    <input
+      filename={file} 
+      onChange={e => setFile(e.target.files[0])} 
+      type="file" 
+      accept="image/*"
+    ></input>
+    <input
+      value={description}
+      onChange={e => setDescription(e.target.value)} 
+      type="text"
+    ></input>
+    <button type="submit">Submit</button>
+  </form>  
       <p></p>
       <GalleryList 
         handleLike={handleLike} 

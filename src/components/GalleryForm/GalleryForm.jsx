@@ -18,9 +18,9 @@ function GalleryForm({ addImage }) {
         }
     };
 
+
     return (
             <form className="gallery-form">
-                {/* <h3>Add a new image</h3> */}
                 <div id="input-container">
                     <Input
                         name="url"
