@@ -1,7 +1,7 @@
 
 function DeleteItem({ id, deleteItem }) {
     return (
-      <button onClick={() => deleteItem(id)}>
+      <button className="delete-button" onClick={() => deleteItem(id)}>
         Delete
       </button>
     );

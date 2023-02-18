@@ -1,7 +1,7 @@
 function SubmitButton({ handleSubmit }) {
     return (
       <button onClick={handleSubmit}>
-        Submit
+        add image
       </button>
     );
   }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "../Input/Input";
 import SubmitButton from "../SubmitButton";
+import "./GalleryForm.css";
 
 function GalleryForm({ addImage }) {
     const [url, setUrl] = useState("");
@@ -19,19 +20,19 @@ function GalleryForm({ addImage }) {
 
     return (
             <form className="gallery-form">
-                <h3>Add a new image</h3>
+                {/* <h3>Add a new image</h3> */}
                 <div id="input-container">
                     <Input
                         name="url"
                         value={url}
                         setValue={setUrl}
-                        placeHolder="enter the url"
+                        placeHolder="image url"
                     />
                     <Input
                         name="description"
                         value={description}
                         setValue={setDescription}
-                        placeHolder="enter image description"
+                        placeHolder="image description"
                     />
                     <SubmitButton handleSubmit={handleSubmit} />
                 </div>

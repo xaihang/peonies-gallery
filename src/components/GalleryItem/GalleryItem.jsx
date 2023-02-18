@@ -1,18 +1,18 @@
-import { useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
 import DeleteItem from '../DeleteItem/DeleteItem';
 
-function GalleryItem ({item, handleLike, deleteItem}) {
-    const [showDescription, setShowDescription] = useState(false)
+function GalleryItem ({item, handleLike, deleteItem, showDescriptionList, toggleDescription}) {
 
-    const toggleDescription = () => {
-        setShowDescription(!showDescription)
+    const handleImageClick = () => {
+        toggleDescription();
     }
 
     return (
         <div className="gallery-item">
-            <img src={item.url} onClick={toggleDescription} alt={item.description} />
-            {showDescription && <p onClick={toggleDescription}>{item.description}</p>}
+            <img src={item.url} alt={item.description} onClick={handleImageClick} />
+            <div className="description-container">
+                <p className="description">{item.description}</p>
+            </div>
             <button className="like-button" onClick={() => handleLike(item.id)}>
                 <MdFavorite />
             </button>
