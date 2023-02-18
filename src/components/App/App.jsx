@@ -4,17 +4,17 @@ import axios from 'axios';
 import GalleryList from '../GalleryList/GalleryList';
 import GalleryForm from '../GalleryForm/GalleryForm';
 
-// import Swal from "sweetalert2";
-// import withReactContent from "sweetalert2-react-content";
 
 function App() {
   const [imageList, setImageList] = useState([]);
+  const [showDescriptionList, setShowDescriptionList] = useState([]);
 
   const fetchImages = () => {
     axios
       .get('/gallery')
       .then((response) => {
         setImageList(response.data);
+        setShowDescriptionList(Array(response.data.length).fill(false));
       })
       .catch((error) => {
         alert('error getting gallery list');
@@ -25,6 +25,13 @@ function App() {
     fetchImages();
   }, []);
 
+  const toggleDescription = (id) => {
+    setShowDescriptionList((prevState) => {
+      const newState = [...prevState];
+      newState[id] = !newState[id];
+      return newState;
+    });
+  };
 
   const deleteItem = (id) => {
     axios
@@ -71,7 +78,9 @@ function App() {
       <GalleryList 
         handleLike={handleLike} 
         imageList={imageList}
-        deleteItem={deleteItem}/>
+        deleteItem={deleteItem}
+        toggleDescription={toggleDescription}
+        showDescriptionList={showDescriptionList}/>
     </div>
   );
 }
