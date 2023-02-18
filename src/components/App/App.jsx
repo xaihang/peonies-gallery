@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import GalleryList from '../GalleryList/GalleryList';
-import DeleteItem from '../DeleteItem/DeleteItem';
+import GalleryForm from '../GalleryForm/GalleryForm';
 
 // import Swal from "sweetalert2";
 // import withReactContent from "sweetalert2-react-content";
@@ -38,7 +38,6 @@ function App() {
   };
 
   const handleLike = (id) => {
-    console.log("in handleLike");
     axios
       .put(`/gallery/like/${id}`)
       .then(() => {
@@ -49,13 +48,26 @@ function App() {
       });
   };
 
+  const addImage = (item) => {
+    console.log('in addImage...', item)
+    axios
+      .post("/gallery", item)
+      .then(() => {
+        fetchImages();
+      })
+      .catch((err) => {
+       console.error(err)
+      })
+  };
+
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="App-title">Gallery of My Life</h1>
+        <h1 className="App-title">Petals of Perfection: A Breathtaking Gallery of Peonies</h1>
       </header>
-      <p>Gallery goes here</p>
+      <GalleryForm addImage={addImage}/>
+      <p></p>
       <GalleryList 
         handleLike={handleLike} 
         imageList={imageList}

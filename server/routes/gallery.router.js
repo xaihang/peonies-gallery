@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 //! GET Route - stretch mode:
 router.get("/", (req, res) => {
-    const sqlText = `SELECT * FROM gallery ORDER BY id;`;
+    const sqlText = `SELECT * FROM gallery ORDER BY id DESC;`;
     pool
       .query(sqlText)
       .then((result) => {
@@ -49,6 +49,24 @@ router.delete("/:id", (req, res) => {
         res.sendStatus(500);
       });
   });
+
+//! POST - stretch mode for form inputs
+router.post("/", (req, res) => {
+  const item = req.body;
+  const sqlText = `INSERT INTO gallery ("url", "description")
+  VALUES ($1, $2)`;
+
+  pool
+    .query(sqlText, [item.url, item.description])
+    .then((dbRes) => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })    
+})
+
 
 module.exports = router;
 

@@ -27,8 +27,8 @@ For this project you will create a gallery page to share pictures of things that
 ### TASKS:
 - [x] **GET** display images with:
     - [x] like button -- toggle between having a full or outlined heart **PUT**
-- [] allow user to click on image **GET byID**
-    - [] once image clicked -> description appears
+- [x] allow user to click on image **GET byID**
+    - [x] once image clicked -> description appears
 
 
 
@@ -71,14 +71,14 @@ To practice passing values through `props` in React, you will build the gallery 
 
 ### Features
 
-- Move the data into a database (postgresql)
-    - name your database `react_gallery`
-    - include a `database.sql` file documenting your database tables
-- [] **POST** Add a form (new **component**) that allows a user to POST a new gallery item
-  - Client side form (use absolute URL for images)
+- [x]Move the data into a database (postgresql)
+    - [x] name your database `react_gallery`
+    - [x] include a `database.sql` file documenting your database tables
+- [x] **POST** Add a form (new **component**) that allows a user to POST a new gallery item
+  -[x] Client side form (use absolute URL for images)
   - Server side route for posting an image
-- Ability to delete a gallery item
-- Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
+- [x] Ability to delete a gallery item
+- [] Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
 - Use [multer](https://github.com/expressjs/multer) for image upload 
 
 > NOTE: The above stretch goals are intended to be completed in order.
