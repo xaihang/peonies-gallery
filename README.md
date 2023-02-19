@@ -57,6 +57,7 @@ An application of gallery dedicated to showcasing images of peonies. Users can a
 * [Postman](https://www.postman.com/)
 * [GitHub](https://github.com/xaihang/) 
 * [Multer](https://expressjs.com/en/resources/middleware/multer.html)
+* [Material UI](https://mui.com/)
 
 ![MIT LICENSE](https://img.shields.io/github/license/scottbromander/the_marketplace.svg?style=flat-square)
 ![REPO SIZE](https://img.shields.io/github/repo-size/scottbromander/the_marketplace.svg?style=flat-square)
