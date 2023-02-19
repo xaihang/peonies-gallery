@@ -48,7 +48,6 @@ function App() {
     axios
       .put(`/gallery/like/${id}`)
       .then(() => {
-        console.log('handleLike', id);
         fetchImages();
       })
       .catch((error) => {
