@@ -1,6 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
+const path = require("path");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '../../public/images'))
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, `${uniqueSuffix}-${file.originalname}`)
+  }
+})
 
 //! GET Route - stretch mode:
 router.get("/", (req, res) => {
@@ -67,6 +79,24 @@ router.post("/", (req, res) => {
   })    
 })
 
+const upload = multer({ storage: storage })
+//! POST - stretch mode for multer upload
+router.post('/upload', upload.single('image'), (req, res) => {
+  const url = req.file.filename;
+  const description = req.body.description;
+  const sqlText = `INSERT INTO gallery ("url", "description")
+  VALUES ($1, $2)`;
+
+  pool
+    .query(sqlText, [url, description])
+    .then((dbRes) => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  }) 
+});
 
 module.exports = router;
 

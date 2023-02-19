@@ -19,11 +19,21 @@ function GalleryItem({
     toggleDescription();
   };
 
+  
+
+let url = ''
+
+if(item.url.includes('https')){
+  url = item.url
+}else{
+  url = `/images/${item.url}`
+}
+
   return (
     <div className="gallery-item">
       <ImageListItem key={item.id}>
         <img
-          src={item.url}
+          src={url}
           alt={item.description}
           onClick={() => toggleDescription(item.id)}
           loading="lazy"
