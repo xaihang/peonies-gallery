@@ -79,6 +79,6 @@ To practice passing values through `props` in React, you will build the gallery 
   - [x] Server side route for posting an image
 - [x] Ability to delete a gallery item
 - [] Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
-- Use [multer](https://github.com/expressjs/multer) for image upload 
+- [x] Use [multer](https://github.com/expressjs/multer) for image upload 
 
 > NOTE: The above stretch goals are intended to be completed in order.
