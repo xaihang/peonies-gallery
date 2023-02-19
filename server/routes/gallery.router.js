@@ -84,9 +84,6 @@ const upload = multer({ storage: storage })
 router.post('/upload', upload.single('image'), (req, res) => {
   const url = req.file.filename;
   const description = req.body.description;
-  console.log('url', url)
-  console.log('description', description);
-
   const sqlText = `INSERT INTO gallery ("url", "description")
   VALUES ($1, $2)`;
 

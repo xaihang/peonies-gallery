@@ -5,12 +5,9 @@ import GalleryList from '../GalleryList/GalleryList';
 import GalleryForm from '../GalleryForm/GalleryForm';
 import GalleryMutlerForm from '../GalleryMutlerForm/GalleryMutlerForm';
 
-
 function App() {
   const [imageList, setImageList] = useState([]);
   const [showDescriptionList, setShowDescriptionList] = useState([]);
-  const [file, setFile] = useState()
-  const [description, setDescription] = useState("")
 
   const fetchImages = () => {
     axios
@@ -51,7 +48,7 @@ function App() {
     axios
       .put(`/gallery/like/${id}`)
       .then(() => {
-        console.log('handleLike', id)
+        console.log('handleLike', id);
         fetchImages();
       })
       .catch((error) => {
@@ -60,60 +57,48 @@ function App() {
   };
 
   const addImage = (item) => {
-    console.log('in addImage...', item)
     axios
-      .post("/gallery", item)
+      .post('/gallery', item)
       .then(() => {
         fetchImages();
       })
       .catch((err) => {
-        console.error(err)
-      })
+        console.error(err);
+      });
   };
 
-
-  const uploadImage = async event => {
-    event.preventDefault()
-  
-    const formData = new FormData()
-    formData.append("image", file)
-    formData.append("description", description)
-
-   await axios.post('/gallery/upload', formData, { headers: {'Content-Type': 'multipart/form-data'}})
- 
-    fetchImages();
-    setFile(null)
-    setDescription("")
-  }
+  const uploadImage = (file, description) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('description', description);
+    axios
+      .post('/gallery/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then(() => {
+        fetchImages();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Petals of Perfection</h1>
-        <h2 className="App-title">A Breathtaking Gallery of Peonies</h2> 
+        <h2 className="App-title">A Breathtaking Gallery of Peonies</h2>
       </header>
-      <GalleryForm addImage={addImage}/>
-      <form onSubmit={uploadImage}>
-    <input
-      filename={file} 
-      onChange={e => setFile(e.target.files[0])} 
-      type="file" 
-      accept="image/*"
-    ></input>
-    <input
-      value={description}
-      onChange={e => setDescription(e.target.value)} 
-      type="text"
-    ></input>
-    <button type="submit">Submit</button>
-  </form>  
+      <GalleryForm addImage={addImage} />
+      <GalleryMutlerForm uploadImage={uploadImage} />
       <p></p>
-      <GalleryList 
-        handleLike={handleLike} 
+      <GalleryList
+        handleLike={handleLike}
         imageList={imageList}
         deleteItem={deleteItem}
         toggleDescription={toggleDescription}
-        showDescriptionList={showDescriptionList}/>
+        showDescriptionList={showDescriptionList}
+      />
     </div>
   );
 }
